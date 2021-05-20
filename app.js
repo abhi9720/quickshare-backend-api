@@ -13,12 +13,12 @@ app.use((req, res, next) => {
 	res.locals.error = '';
 	next();
 });
-app.use(cors);
+
 //=============================  cors
 const corsOptions = {
 	origin: process.env.ALLOW_CLIENT.split(','),
 };
-
+app.use(cors(corsOptions));
 /* -------------------------------- DataBase Connection --------------------------------------*/
 const connectDB = require('./config/db');
 connectDB();
