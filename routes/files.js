@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
 			size: req.file.size,
 		});
 		const response = await file.save();
-		console.log(process.env.APP_BASE_URL);
+
 		res.json({ file: `${process.env.APP_BASE_URL}/files/${response.uuid}` });
 	});
 });
