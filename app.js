@@ -7,27 +7,18 @@ const app = express();
 const ejsMate = require('ejs-mate');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 /* -------------------------------- middle ware --------------------------------------*/
 app.use((req, res, next) => {
 	res.locals.error = '';
 	next();
 });
+app.use(cors);
+//=============================  cors
+const corsOptions = {
+	origin: process.env.ALLOW_CLIENT.split(','),
+};
 
-// app.use((req, res, next) => {
-// 	res.header('Access-Control-Allow-Origin', '*'); // now whenerver i send res , have this header
-// 	// * allow to give acess to every one ,
-
-// 	// also we can define specific url
-
-// 	//second  argument types of header
-// 	if (req.method === 'OPTIONS') {
-// 		res.header('Access-Control-Allow-Methods', 'PUT, POST,PATCH,DELETE,GET');
-// 		return res.status(200).json({}); // option request is for only finding out what options we have
-// 	}
-
-// 	next();
-// });
 /* -------------------------------- DataBase Connection --------------------------------------*/
 const connectDB = require('./config/db');
 connectDB();
